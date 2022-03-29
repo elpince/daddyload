@@ -1,13 +1,18 @@
 import { GetterTree } from 'vuex'
-import { UIState } from '@/store/modules/ui/state'
+import { MachineEditorState } from './state'
+import { Position } from '@/types/Basic'
+import Machine from '@/classes/Machine'
 
-const uiGetters: GetterTree<UIState, any> = {
-  uiOpen(state): boolean {
-    return state.uiOpen
+const machineEditorGetters: GetterTree<MachineEditorState, any> = {
+  workshopSize(state): number {
+    return state.workshopSize
   },
-  currentUi(state): string {
-    return state.currentUi
+  machineShape(state): Position[] {
+    return state.machineShape
+  },
+  machine(state): Machine | undefined {
+    return state.machine
   }
 }
 
-export default uiGetters
+export default machineEditorGetters

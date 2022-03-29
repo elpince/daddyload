@@ -1,13 +1,13 @@
 import { Module } from 'vuex'
-import uiState from './state'
-import uiGetters from './getters'
-import uiMutations from './mutations'
+import machineEditorState from './state'
+import machineEditorGetters from './getters'
+import machineEditorMutations from './mutations'
 
-const UI: Module<any, any> = {
+const MachineEditor: Module<any, any> = {
   namespaced: true,
-  state: () => uiState,
-  getters: uiGetters,
-  mutations: uiMutations
+  state: () => machineEditorState,
+  getters: machineEditorGetters,
+  mutations: machineEditorMutations
 }
 
-export default UI
+export default MachineEditor

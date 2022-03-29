@@ -1,17 +1,25 @@
 import { MutationTree } from 'vuex'
-import { UIState } from '@/store/modules/ui/state'
+import { MachineEditorState } from './state'
+import { Position } from '@/types/Basic'
+import Machine from '@/classes/Machine'
 
-const uiMutations: MutationTree<UIState> = {
-  uiOpen(state, isOpen: boolean): void {
-    state.uiOpen = isOpen
+const machineEditorMutations: MutationTree<MachineEditorState> = {
+  workshopSize(state, size: number): void {
+    state.workshopSize = size
   },
-  currentUi(state, currentUi: string): void {
-    if (state.currentUi === currentUi) {
-      state.currentUi = ''
-      return
+  machineShape(state, position: Position): void {
+    if (position.x === 0 && position.y === 0) return
+    if (state.machineShape.some(p => position.x === p.x && position.y === p.y)) {
+      state.machineShape = state.machineShape.filter(p => position.x !== p.x || position.y !== p.y)
+    } else {
+      state.machineShape = [ ...state.machineShape, position ]
     }
-    state.currentUi = currentUi
+    if (state.machine) state.machine.setMachineShape(state.machineShape.map(cell => ({ position: cell })))
+  },
+  machine(state, machine: Machine) {
+    state.machine = machine
+    state.machine.setMachineShape(state.machineShape.map(cell => ({ position: cell })))
   }
 }
 
-export default uiMutations
+export default machineEditorMutations

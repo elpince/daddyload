@@ -1,11 +1,16 @@
-export interface UIState {
-  uiOpen: boolean,
-  currentUi: string
+import { Position } from '@/types/Basic'
+import Machine from '@/classes/Machine'
+
+export interface MachineEditorState {
+  workshopSize: number,
+  machineShape: Position[],
+  machine?: Machine
 }
 
-const uiState: UIState = {
-  uiOpen: false,
-  currentUi: ''
+const machineEditorState: MachineEditorState = {
+  workshopSize: 3,
+  machineShape: [{ x: 0, y: 0}],
+  machine: undefined
 }
 
-export default uiState
+export default machineEditorState

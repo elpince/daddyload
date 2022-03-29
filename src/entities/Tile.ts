@@ -1,12 +1,10 @@
-import { Span } from './Utils'
+import {Describable, dictionary, Dictionary} from '@/types/Entity'
+import { Span } from '@/types/Basic'
 
-interface Cell {
-  id: number,
-  title: string,
-  sprite: string,
-  text: string,
+type Tile = Describable & {
   canDig: boolean,
   canPass: boolean,
+  density: number,
   value?: number,
   depth?: Span,
   onDig?: () => void,
@@ -14,28 +12,35 @@ interface Cell {
   onPass?: () => void,
 }
 
-export const cellList: Cell[] = [
+const tileTypeList: Tile[] = [
   {
     id: 0,
-    title: 'Empty',
+    name: 'Empty',
     sprite: '',
     text: '',
     canDig: false,
-    canPass: true
+    canPass: true,
+    density: 0
   },
   {
     id: 1,
-    title: 'Ground',
+    name: 'Ground',
     sprite: '',
     text: '',
     canDig: true,
-    canPass: false
+    canPass: false,
+    density: 5
+  },
+  {
+    id: 2,
+    name: 'Iron',
+    sprite: '',
+    text: '',
+    canDig: true,
+    canPass: false,
+    density: 10
   },
 ]
 
-const cellTypes: { [key: number]: Cell } = {}
-cellList.forEach((type: Cell) => {
-  cellTypes[type.id] = type
-})
-
-export default cellTypes
+export const tileTypes: Dictionary = dictionary(tileTypeList)
+export default tileTypes

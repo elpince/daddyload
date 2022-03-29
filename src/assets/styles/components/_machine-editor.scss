@@ -1,0 +1,16 @@
+.machine-editor {
+  width: 500px;
+  height: 500px;
+  background: gray;
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+  
+  &__cell {
+    background-color: aliceblue;
+    
+    &--active {
+      background-color: blue;
+    }
+  }
+}
